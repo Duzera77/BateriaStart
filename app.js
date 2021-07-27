@@ -5,13 +5,18 @@ for (let i = 0; i < numberOfDrumButtons; i++) {
         let buttonSelected = this.innerHTML
     
         makeSounds(buttonSelected);
+
+        buttonAnimation(buttonSelected);
     })
 
+    
+}
+
 document.addEventListener('keydown', function(event) {
-    makeSounds(event.key)
+    makeSounds(event.key);
+    buttonAnimation(event.key);
 })
 
-}
 
 function makeSounds(key) {
     switch (key) {
@@ -54,4 +59,14 @@ function makeSounds(key) {
             break;
     }
 
+}
+
+function buttonAnimation( currentKey ){
+    let activeButton = document.querySelector( '.' + currentKey )
+
+    activeButton.classList.add('pressed')
+
+    setTimeout( function(){
+        activeButton.classList.remove('pressed')
+    }, 100)
 }
